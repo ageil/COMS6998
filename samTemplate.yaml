@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: 'AWS::Serverless-2016-10-31'
-Description: CD Demo Lambda
+Description: Lambda Pipeline P1
 Globals:
   Function:
     Timeout: 30
@@ -13,7 +13,7 @@ Resources:
       FunctionName: auto-index-photos
       Handler: lambda_function.lambda_handler
       CodeUri: ./index-photos.py
-      Description: 'Lambda function for our stack'
+      Description: 'Lambda index photos function for our HW3 stack'
       Role: 'arn:aws:iam::416562561820:role/service-role/index-photos-role-ljptehrr'
       Events:
         getAZsAPI:
@@ -30,7 +30,7 @@ Resources:
       FunctionName: auto-delete-photos
       Handler: lambda_function.lambda_handler
       CodeUri: ./delete-photos.py
-      Description: 'Lambda function for our stack'
+      Description: 'Lambda delete photos function for our HW3 stack'
       Role: 'arn:aws:iam::416562561820:role/service-role/delete-photos-role-9wgllhee'
       Events:
         getAZsAPI:
@@ -41,4 +41,3 @@ Resources:
       Environment:
         Variables:
           REGION: us-east-1
-
