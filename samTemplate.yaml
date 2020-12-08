@@ -7,7 +7,7 @@ Globals:
     MemorySize: 128
     Runtime: python3.6 
 Resources:
-  CDDemoLambda:
+  IndexPhotosLambda:
     Type: 'AWS::Serverless::Function'
     Properties:
       FunctionName: auto-index-photos
@@ -24,7 +24,7 @@ Resources:
       Environment:
         Variables:
           REGION: us-east-1
-  CDDemoLambda:
+  DeletePhotosLambda:
     Type: 'AWS::Serverless::Function'
     Properties:
       FunctionName: auto-delete-photos
