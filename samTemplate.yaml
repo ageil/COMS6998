@@ -27,9 +27,6 @@ Resources:
   DeleteLambda:
     Type: 'AWS::Serverless::Function'
     Properties:
-      Code:
-        S3Bucket:
-          Ref: coms6998-b2
       FunctionName: auto-delete-photos
       Handler: lambda_function.lambda_handler
       CodeUri: ./delete-photos.py
