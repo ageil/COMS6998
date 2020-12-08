@@ -41,3 +41,4 @@ Resources:
       Environment:
         Variables:
           REGION: us-east-1
+
