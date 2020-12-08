@@ -4,7 +4,7 @@ from elasticsearch import Elasticsearch, RequestsHttpConnection
 from aws_requests_auth.aws_auth import AWSRequestsAuth
 from datetime import datetime
 
-
+# test
 def lambda_handler(event, context):
     s3 = boto3.client('s3')
     rekognition = boto3.client('rekognition')
