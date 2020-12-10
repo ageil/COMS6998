@@ -7,10 +7,10 @@ Globals:
     MemorySize: 128
     Runtime: python3.6 
 Resources:
-  SearchLambda:
+  LambdaSearch:
     Type: 'AWS::Serverless::Function'
     Properties:
-      FunctionName: LFX
+      FunctionName: auto-search-photos
       Handler: lambda_function.lambda_handler
       CodeUri: ./search-photos.py
       Description: 'Lambda search photos function for our HW3 stack'
@@ -24,12 +24,14 @@ Resources:
       Environment:
         Variables:
           REGION: us-east-1
-  IndexLambda:
+  LambdaIndex:
     Type: 'AWS::Serverless::Function'
     Properties:
+      Code:
+        S3Bucket:
+          Ref: coms6998-b2
       FunctionName: auto-index-photos
       Handler: lambda_function.lambda_handler
-      Runtime: python3.6
       CodeUri: ./index-photos.py
       Description: 'Lambda index photos function for our HW3 stack'
       Role: 'arn:aws:iam::416562561820:role/service-role/index-photos-role-ljptehrr'
@@ -42,7 +44,7 @@ Resources:
       Environment:
         Variables:
           REGION: us-east-1
-  DeleteLambda:
+  LambdaDelete:
     Type: 'AWS::Serverless::Function'
     Properties:
       Code:
