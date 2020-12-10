@@ -15,12 +15,6 @@ Resources:
       CodeUri: ./search-photos.py
       Description: 'Lambda search photos function for our HW3 stack'
       Role: 'arn:aws:iam::416562561820:role/service-role/LF2-role-gtoil4v7'
-      Events:
-        getAZsAPI:
-          Type: Api
-          Properties:
-            Path: /getazs
-            Method: get
       Environment:
         Variables:
           REGION: us-east-1
@@ -32,12 +26,6 @@ Resources:
       CodeUri: ./index-photos.py
       Description: 'Lambda index photos function for our HW3 stack'
       Role: 'arn:aws:iam::416562561820:role/service-role/index-photos-role-ljptehrr'
-      Events:
-        getAZsAPI:
-          Type: Api
-          Properties:
-            Path: /getazs
-            Method: get
       Environment:
         Variables:
           REGION: us-east-1
@@ -49,12 +37,6 @@ Resources:
       CodeUri: ./delete-photos.py
       Description: 'Lambda delete photos function for our HW3 stack'
       Role: 'arn:aws:iam::416562561820:role/service-role/delete-photos-role-9wgllhee'
-      Events:
-        getAZsAPI:
-          Type: Api
-          Properties:
-            Path: /getazs
-            Method: get
       Environment:
         Variables:
           REGION: us-east-1
