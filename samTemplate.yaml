@@ -10,7 +10,7 @@ Resources:
   LambdaSearch:
     Type: 'AWS::Serverless::Function'
     Properties:
-      FunctionName: auto-search-photos
+      FunctionName: search-photos
       Handler: lambda_function.lambda_handler
       CodeUri: ./search-photos.py
       Description: 'Lambda search photos function for our HW3 stack'
@@ -32,8 +32,8 @@ Resources:
   LambdaDelete:
     Type: 'AWS::Serverless::Function'
     Properties:
-      FunctionName: auto-delete-photos
-      Handler: lambda_function.lambda_handler
+      FunctionName: delete-photos
+      Handler: delete-photos.lambda_handler
       CodeUri: ./delete-photos.py
       Description: 'Lambda delete photos function for our HW3 stack'
       Role: 'arn:aws:iam::416562561820:role/service-role/delete-photos-role-9wgllhee'
