@@ -48,4 +48,4 @@ Resources:
       NotificationConfiguration:
         LambdaConfigurations:
           - Event: 's3:ObjectCreated:*'
-            Function: !GetAtt LambdaIndex.Arn
+            Function: LambdaIndex
