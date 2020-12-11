@@ -24,7 +24,8 @@ es = Elasticsearch(
      )
 
 s3 = boto3.resource('s3')
-    
+client = boto3.client('lex-runtime')   
+
     
 def search_labels():
     response = es.search(index="photos", body={
@@ -46,14 +47,16 @@ def search_labels():
     return label_list
     
     
-def check_labels(labels, query):
+def check_labels(labels, queries):
+    label_list = []
     for label in labels:
-        if query.lower() in label.lower():
-            return label
-            break
+        for query in queries:
+            if query.lower() in label.lower():
+                label_list.append(label)
+    return label_list
 
 
-def search_picture(label):
+def search_picture(label_list):
     response = es.search(index="photos", body={
         "query": {
             "match_all" : {}
@@ -63,16 +66,28 @@ def search_picture(label):
     index_list = []
     for i in range(len(response)):
         labels = response[i]['_source']['labels']
-        if label in labels:
-            index_list.append(response[i]["_source"]["objectKey"])
+        for label in label_list:
+            if label in labels:
+                index_list.append(response[i]["_source"]["objectKey"])
     
     return index_list
     
 
 def get_qurey(event, context):
     messages = event['query']
-    messages = messages.split()
-    query = messages[len(messages)-1].lower()
+    lex_response = client.post_text(
+                botName='photo_album',
+                botAlias='test',
+                userId='search_lambda',
+                inputText=event['query']
+            )
+    #print('lex: ', lex_response)
+    
+    if lex_response['slots']['slotTwo'] == None :
+        query = lex_response['slots']['slotOne']
+    else:
+        query = [lex_response['slots']['slotOne'], lex_response['slots']['slotTwo']]
+    print('query: ', query)
     return query
     
 
@@ -97,8 +112,8 @@ def move_to_album(key_list):
 def lambda_handler(event, context):
     print("event: ", event)
     label_list = search_labels()
-    query = get_qurey(event, context)
-    label = check_labels(label_list, query)
+    queries = get_qurey(event, context)
+    label = check_labels(label_list, queries)
     if label:
         index_list = search_picture(label)
         print(index_list)
