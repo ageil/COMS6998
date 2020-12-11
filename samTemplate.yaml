@@ -40,12 +40,3 @@ Resources:
       Environment:
         Variables:
           REGION: us-east-1
-  Bucket:
-    Type: AWS::S3::Bucket
-    DependsOn: BucketPermission
-    Properties:
-      BucketName: coms6998-b2
-      NotificationConfiguration:
-        LambdaConfigurations:
-          - Event: 's3:ObjectCreated:*'
-            Function: LambdaIndex
