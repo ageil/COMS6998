@@ -21,7 +21,7 @@ Resources:
   LambdaIndex:
     Type: 'AWS::Serverless::Function'
     Properties:
-      FunctionName: auto-index-photos
+      FunctionName: index-photos
       Handler: lambda_function.lambda_handler
       CodeUri: ./index-photos.py
       Description: 'Lambda index photos function for our HW3 stack'
