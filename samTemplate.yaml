@@ -11,7 +11,7 @@ Resources:
     Type: 'AWS::Serverless::Function'
     Properties:
       FunctionName: search-photos
-      Handler: lambda_function.lambda_handler
+      Handler: search-photos.lambda_handler
       CodeUri: ./search-photos.py
       Description: 'Lambda search photos function for our HW3 stack'
       Role: 'arn:aws:iam::416562561820:role/service-role/LF2-role-gtoil4v7'
